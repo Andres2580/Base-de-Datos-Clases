@@ -14,9 +14,9 @@ create table customer_orders.customers(
 go
 create view VTotalOrderByCustomer as
 	select O.CustomerID, CompanyName, count(*) as TotalOrders
-							from Orders as O
-								join Customers as C on O.CustomerID = C.CustomerID
-							group by O.CustomerID, CompanyName
+		from Orders as O
+			join Customers as C on O.CustomerID = C.CustomerID
+		group by O.CustomerID, CompanyName
 go
 select * from VTotalOrderByCustomer
 go
