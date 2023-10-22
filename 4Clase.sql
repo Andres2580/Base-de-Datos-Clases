@@ -33,13 +33,13 @@ go
 --Sobre ese caso se le va pedir que creen las tablas que ustedes consideren necesarias y sobre esas tablas
 --que deben estar dentro de una esquema crean las consultas q se le pida en el caso
 --==========================================================================
---Ejercicio1
+--Ejercicio1 - Muestre el nombre del producto y el nombre su categoría para cada producto.
 select ProductName, CategoryName
 from Products as P
 	join Categories as C on P.CategoryID = C.CategoryID
 go
 --==========================================================================
---Ejercicio2
+--Ejercicio2 - Indicar el nombre del producto con la mayor cantidad de órdenes
 --una vista nos permite crear una tabla temporal
 --la cantidad de ordenes que hay por cada cliente
 --Indicar el nombre del producto con la mayor cantidad de órdenes(PREGUNTA)
@@ -85,7 +85,7 @@ where Total = (select max(total)
 				from VTotalOrdersByProduct)
 go
 --==================================================================
---Ejercicio 3
+--Ejercicio 3 - Indicar la cantidad de órdenes atendidas por cada empleado (mostrar el nombre y apellido de cada empleado)
 --que la orden 10258 ha sido antendido por el empleado de codigo 1
 --que el empleado del codigo 1 a atendido 123 ordenes
 --count(OrderID)-> contar la cantidad de ordenes en base al codigo del empleado
@@ -130,13 +130,13 @@ go
 --¿En que momento vas a aplicar vistas?
 --cuando tengas una tabla temporal, una consulta que nos va servir para mas consultas 
 --CustomerID no valla ser 2 compañias con el mismo nombre 
--- Ejercicio 4
+-- Ejercicio 4 - Indicar la cantidad de órdenes realizadas por cada cliente (mostrar el nombre de la compañía de cada cliente).
 select O.CustomerID, CompanyName, count(OrderID) as Total
 from Orders as O
 	join Customers as C on O.CustomerID = C.CustomerID
 group by O.CustomerID, CompanyName
 go
--- Ejercicio 5
+-- Ejercicio 5 - Identificar la relación de clientes (nombre de compañía) que no han realizado pedidos
 select CustomerID from Orders
 go
 select CompanyName
@@ -144,13 +144,14 @@ from Customers
 where CustomerID not in (select CustomerID from Orders)
 go
 
--- Ejercicio 6
+-- Ejercicio 6 - Muestre el código y nombre de todos los clientes (nombre de compañía) que tienen órdenes pendientes de despachar.
 select distinct O.CustomerID, CompanyName
 from Orders as O
 	join Customers as C on O.CustomerID = C.CustomerID
 where ShippedDate is null
 go
--- Ejercicio 7
+-- Ejercicio 7 - . Muestre el código y nombre de todos los clientes (nombre de compañía) que tienen órdenes
+-- pendientes de despachar, y la cantidad de órdenes con esa característica.
 select O.CustomerID, CompanyName, count(OrderID) as Total
 from Orders as O
 	join Customers as C on O.CustomerID = C.CustomerID
@@ -172,6 +173,10 @@ from Orders as O
 where ShipCity <> City or ShipPostalCode <> PostalCode
 go
 -- Ejercicio 8
+--Encontrar los pedidos que debieron despacharse a una ciudad o código postal diferente de la ciudad
+--o código postal del cliente que los solicitó. Para estos pedidos, mostrar el país, ciudad y código postal
+--del destinatario, así como la cantidad total de pedidos por cada destino.
+
 select ShipCountry, ShipCity, ShipPostalCode, count(OrderID) as Total
 from Orders as O
 	join Customers as C on O.CustomerID = C.CustomerID
@@ -181,7 +186,7 @@ go
 --======================================================================
 select * 
 from Employees
--- Ejercicio 10
+-- Ejercicio 10 - Mostrar los nombres y apellidos de los empleados junto con los nombres y apellidos de sus respectivos jefes
 
 select E.EmployeeID, E.LastName, E.FirstName, E.ReportsTo, B.LastName, B.FirstName
 from Employees as E
