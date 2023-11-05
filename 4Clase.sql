@@ -191,4 +191,20 @@ from Employees
 select E.EmployeeID, E.LastName, E.FirstName, E.ReportsTo, B.LastName, B.FirstName
 from Employees as E
 	left join Employees as B on E.ReportsTo = B.EmployeeID
-
+--=================================================================
+--crear una funcion que retorne la cantidad de ordenes
+--la cantidad total de ordenes
+select count(OrderID)
+from Orders
+go
+--crear una funcion que retorne la cantidad de ordenes
+--set -> asignarle un valor
+create function FtotalOrders() returns int
+as
+begin
+	declare @total int
+	set @total = (select count(OrderID) from Orders)
+	return @total
+end
+go
+print dbo.FtotalOrders()
