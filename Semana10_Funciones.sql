@@ -3,7 +3,7 @@
 select *
 from [Order Details]
 go
---Ejercicio 11 Mostrar el ranking de venta anual por país de origen del empleado, tomando como base la fecha de
+--Ejercicio 11:Mostrar el ranking de venta anual por país de origen del empleado, tomando como base la fecha de
 --las órdenes, y mostrando el resultado por año y venta total (descendente). 
 
 --Si yo quisiera calcular el monto de que se ha vendido en este producto 
@@ -36,11 +36,12 @@ group by Country, YEAR(OrderDate)
 order by Total desc
 go
 -- FUNCIONES--------------------------------------------------------
+--la cantidad total de pedidos
 select count(OrderID)
 from Orders
 where YEAR(OrderDate) = 2016
--- Crear una función que retorne la cantidad de pedidos realizados en un
--- determinado año
+-- EJercicio 3: Crear una función que retorne la cantidad de pedidos realizados en un
+-- determinado año(en el año 2018)
 
 create function FOrdersQuantityByYear(@Year int) returns int 
 begin
@@ -53,7 +54,14 @@ end
 go
 select dbo.FOrdersQuantityByYear(2018)
 go
---
+--Encontrar la funcion que permite tener el año actual
+select getdate()
+--Encontrar La cantidad de unidades por pais
+select ShipCountry, sum(Quantity) as Quantity
+from [Order Details] as OD
+	join Orders as O on OD.OrderID = O.OrderID
+group by ShipCountry
+
 create function FUnitsQuantityByCountry(@Country varchar(15)) returns int
 begin
     declare @Quantity int
@@ -74,7 +82,14 @@ go
 --------------------------------------------
 -- Indicar los nombres de los clientes que no hicieron pedidos en un
 -- determinado año
+select distinct CustomerID
+from Orders
+where Year(OrderDate) = 2016
 
+select CustomerID, CompanyName
+from Customers
+where CustomerID not in (...)
+	
 create function FCustomersWithoutOrdersByYear(@Year int)
     returns table
         return
