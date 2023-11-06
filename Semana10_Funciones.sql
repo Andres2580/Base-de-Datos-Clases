@@ -54,6 +54,7 @@ end
 go
 select dbo.FOrdersQuantityByYear(2018)
 go
+--=====================================================
 --Encontrar la funcion que permite tener el año actual
 select getdate()
 --Encontrar La cantidad de unidades por pais
