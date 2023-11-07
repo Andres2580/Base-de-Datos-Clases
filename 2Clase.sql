@@ -66,9 +66,9 @@ from Customers
 where Country in ('Germany')
 go
 --Indicar la cantidad de clientes por pais de procedenca
-select Country, count(*) as CantidadClientes
+select Country, count(*) as CantidadClientes---
 from Customers
-group by Country
+group by Country---
 go
 --Estamos mostrando los paises de cada uno de los clientes
 select Country
