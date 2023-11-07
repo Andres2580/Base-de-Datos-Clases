@@ -33,7 +33,7 @@ go
 --Sobre ese caso se le va pedir que creen las tablas que ustedes consideren necesarias y sobre esas tablas
 --que deben estar dentro de una esquema crean las consultas q se le pida en el caso
 --==========================================================================
---Ejercicio1 - Muestre el nombre del producto y el nombre su categoría para cada producto.
+--Ejercicio1 - Muestre el nombre del producto y el nombre de su categoría para cada producto.
 select ProductName, CategoryName
 from Products as P
 	join Categories as C on P.CategoryID = C.CategoryID
