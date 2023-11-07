@@ -8,7 +8,9 @@ order by UnitPrice desc
 
 --Ejercicio 2
 --Indicar los países de procedencia de los clientes
-select Distinct Country from Customers
+--el Distinct -> para que no se repite
+select Distinct Country 
+from Customers
 order by Country
 go
 
@@ -43,7 +45,8 @@ go
 
 --Ejercicio 5
 --. Indicar la cantidad de clientes
-select count(CustomerID) as CustomerQuantity from Customers
+select count(CustomerID) as CustomerQuantity 
+from Customers
 go
 --Ejercicio 6
 --Indicar el mayor precio unitario de los productos
@@ -53,7 +56,8 @@ from Products
 go
 
 --Indicar la cantidad de paises de procedencia de los clientes
-select count(distinct Country) as CountryQuantity from Customers
+select count(distinct Country) as CountryQuantity 
+from Customers
 go
 
 --Indicar la cantidad de clientes cuya procedencia sea Alemania
@@ -62,7 +66,7 @@ from Customers
 where Country in ('Germany')
 go
 --Indicar la cantidad de clientes por pais de procedenca
-select Country, count(*)
+select Country, count(*) as CantidadClientes
 from Customers
 group by Country
 go
