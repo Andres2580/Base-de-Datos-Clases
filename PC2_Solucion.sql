@@ -83,7 +83,7 @@ begin
 end
 go
 --PREGUNTA 4
-create procedure actualizar_matricula
+create procedure USPactualizar_matricula
     --para modificar matricula
 	@codigo_matricula int,
 	@control_proceso nvarchar(15) = 'Matriculado',
@@ -158,7 +158,8 @@ begin--solamente voy a tener registros en deleted si es que habido una actualiza
 end
 go
 
-create trigger tri_auditorias_matriculas on matriculas
+create trigger tri_auditorias_matriculas 
+on matriculas
 for insert, update
 as
 begin
