@@ -23,10 +23,10 @@ go
 
 insert into andres.Person(LastName, FirstName, City,Age)
 	values ('Campos', 'Luis', 'Lima', 25),
-			('Toledo', 'Alan', 'Ica', 40),
-			('Fuentes', 'Carmen', 'Lima', 35),
-			('Catillo', 'Ana', 'Huancayo', 30),
-			('Fuentes', 'Pedro', 'Lima', 27)
+	 	('Toledo', 'Alan', 'Ica', 40),
+		('Fuentes', 'Carmen', 'Lima', 35),
+		('Catillo', 'Ana', 'Huancayo', 30),
+		('Fuentes', 'Pedro', 'Lima', 27)
 go
 
 insert into andres.Person(LastName, FirstName,City,Age)
