@@ -1,3 +1,19 @@
+--TRIGGER
+create trigger TRIPersons on andres.Person
+for insert
+as
+begin
+	print ('Se actualizp un registro')
+	select * from deleted
+	select * from inserted
+
+end
+go
+update andres.Person set FirstName = 'Pedro'
+	where PersonID = 11
+go
+select * from andres.Person
+go
 --SQHEMA Y PONER VALORES
 create schema andres
 go
