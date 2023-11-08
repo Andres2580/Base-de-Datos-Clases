@@ -1,5 +1,24 @@
+--SQHEMA Y PONER VALORES
+create schema andres
+go
+create table andres.Person (
+	PersonID int identity(1,1),
+	LastName varchar(50) not null,
+	FirstName varchar(50) not null,
+	City varchar(50),
+	Age int,
+	constraint PKPersons primary key (PersonID),
+	constraint CKPersonAge check (Age > 0)
+)
+go
+insert into andres.Person(LastName, FirstName, City,Age)
+	values ('Campos', 'Luis', 'Lima', 25),
+			('Toledo', 'Alan', 'Ica', 40),
+			('Fuentes', 'Carmen', 'Lima', 35),
+			('Catillo', 'Ana', 'Huancayo', 30),
+			('Fuentes', 'Pedro', 'Lima', 27)
+go
 -- Pregunta 1
-
 create database reclamos
 go
 
