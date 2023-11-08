@@ -3,13 +3,10 @@
 
 create database PC2
 go
-
 use PC2
 go
-
 create schema andres
 go
-
 create table andres.Person (
 	PersonID int identity(1,1),
 	LastName varchar(50) not null,
@@ -20,7 +17,6 @@ create table andres.Person (
 	constraint CKPersonAge check (Age > 0)
 )
 go
-
 insert into andres.Person(LastName, FirstName, City,Age)
 	values ('Campos', 'Luis', 'Lima', 25),
 	 	('Toledo', 'Alan', 'Ica', 40),
