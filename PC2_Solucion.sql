@@ -154,7 +154,7 @@ begin
 	end catch
 end
 go
-
+exec actualizar_matricula @codigo_matricula = 123, @control_proceso = 'Matriculado', @fecha_matricula = '2023-11-07';
 --PREGUNTA 5
 create trigger tri_auditorias_matriculas 
 on matriculas
