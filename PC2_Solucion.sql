@@ -137,7 +137,8 @@ end
 go
 
 --PREGUNTA 5
-create trigger tri_auditorias_matriculas on matriculas
+create trigger tri_auditorias_matriculas 
+on matriculas
 for insert, update
 as
 begin--solamente voy a tener registros en deleted si es que habido una actualizacion
