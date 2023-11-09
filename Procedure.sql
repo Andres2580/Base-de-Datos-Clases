@@ -88,7 +88,6 @@ begin
 				where YEAR(OrderDate) = @Year)
 end
 go
-
 declare @Quantity int
 exec USPTotalOrdersByYear @Year = 2017, @Total = @Quantity output
 select @Quantity
@@ -112,7 +111,6 @@ begin
 	end catch
 end
 go
-
 exec USPDeleteCustomer @CustomerID = 'zaarb'
 go
 select * from Customers
