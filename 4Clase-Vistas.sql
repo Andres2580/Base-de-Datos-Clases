@@ -12,6 +12,7 @@ create table customer_orders.customers(
 
 )
 go
+--Total de ordenes por cliente
 create view VTotalOrderByCustomer as
 	select O.CustomerID, CompanyName, count(*) as TotalOrders
 		from Orders as O
