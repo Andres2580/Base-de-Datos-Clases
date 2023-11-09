@@ -141,6 +141,7 @@ end
 go
 update andres.Person set FirstName = 'Juan'
 	where PersonID = 11
+-- o filas afectadas
 -------------
 alter trigger andres.TRIPersons on andres.Person
 for insert
@@ -151,6 +152,7 @@ begin
 	select LastName,FirstName from inserted
 end
 go
-update andres.Person set FirstName = 'Juan'
-	where PersonID = 11
+update andres.Person set FirstName = 'Patricio'
+	where PersonID = 10
 go
+-- 1 fila afectada
