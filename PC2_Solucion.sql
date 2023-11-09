@@ -1,4 +1,4 @@
---TRIGGER
+--TRIGGER - EJEMPLO ======================================================================================================
 create trigger TRIPersons on andres.Person
 for insert
 as
@@ -14,7 +14,7 @@ update andres.Person set FirstName = 'Pedro'
 go
 select * from andres.Person
 go
---SQHEMA Y PONER VALORES
+--SQHEMA Y PONER VALORES ======================================================================================================
 create schema andres
 go
 create table andres.Person (
@@ -34,7 +34,7 @@ insert into andres.Person(LastName, FirstName, City,Age)
 			('Catillo', 'Ana', 'Huancayo', 30),
 			('Fuentes', 'Pedro', 'Lima', 27)
 go
--- Pregunta 1
+-- Pregunta 1 ======================================================================================================
 create database reclamos
 go
 
