@@ -7,12 +7,15 @@ go
 --las órdenes, y mostrando el resultado por año y venta total (descendente). 
 
 --Si yo quisiera calcular el monto de que se ha vendido en este producto 
-select *, UnitPrice*Quantity from [Order Details]
+select *, UnitPrice*Quantity 
+from [Order Details]
 go
-select *, UnitPrice*Quantity*(1-Discount) from [Order Details]
+select *, UnitPrice*Quantity*(1-Discount) 
+from [Order Details]
 go
 --El costo total de la orden 
-select OrderID, sum(UnitPrice*Quantity*(1-Discount)) from [Order Details]
+select OrderID, sum(UnitPrice*Quantity*(1-Discount)) 
+from [Order Details]
 group by OrderID
 go
 --El monto total que vendio ese empleado
