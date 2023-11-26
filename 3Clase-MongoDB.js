@@ -1,6 +1,3 @@
-use('demo-sv43')
-db.sales.find({ 'customer.age': { $gt: 30}})
-
 /*
     Ejercicio 8
 Mostrar las ventas que hayan sido realizados en Denver o Seattle, y cuyos clientes tengan una edad
@@ -14,7 +11,7 @@ use('demo-sv43')
 db.sales.find({
     $and: [
         {storeLocation : {$in : ['Denver', 'Seattle']}},
-        {'customer.age': {&lt: 30} }
+        {'customer.age': {$lt: 50} }
     ]
 })
 
@@ -39,6 +36,90 @@ use('demo-sv43')
 db.sales.find({
     $and: [
         {storeLocation : {$in : ['Denver', 'Seattle']}},
-        {'customer.age': {&lt: 30} }
+        {'customer.age': {$lt: 50} }
     ]
 }).count()
+
+/*
+countDocuments: cuenta documentos que cumplan un filtros
+- filtros (condiciones)
+distinct: muestra los valores distintos de un campo
+- campo cuyos valores distintos se quere mostrar
+-filtros (condiciones)
+*/
+use('demo-sv43')
+db.sales.countDocuments({
+    $and: [
+        {storeLocation : {$in : ['Denver', 'Seattle']}},
+        {'customer.age': {$lt: 50} }
+    ]
+})
+
+/*
+    AGGREGATE
+    son operaciones que se ejecutan de manera secuencial
+    $match: filtrar
+    $group: agrupar
+    $project: definir una estructura de documento
+    $sort: ordenar los resultados en base a uno o mas campos
+
+    Ejercicio 12
+    Mostrar la cantidad de ventas realizadas por cada metodo de pago
+*/
+use('demo-sv43')
+db.sales.aggregate([
+    { $group: {
+        '_id': '$storeLocation',
+        'quantity' : {$count: {}}
+    }},
+    {$project: {
+        'location': '$_id',
+        'quantity': '$quantity',
+        '_id': false
+    }},
+    { $sort: {'quatity':-1}}
+])
+/*
+    Ejercicio 14
+Mostrar la cantidad de ventas realizadas en Seattle por cada método de pago. Considerar solo aquellos
+métodos de pago que superaron las 100 ventas.
+-se filtra con match
+*/
+use('demo-sv43')
+db.sales.aggregate([
+    { $match: { storeLocation: 'Seattle'}},
+    { 
+        $group: {
+        '_id': '$purchaseMethod',
+        'quantity' : {$count: {}}
+    }},
+    { $match: { 'quantity': { $gt: 100} }}
+])
+
+/*
+Coleccion
+alojamientos obligatorios:
+-titulo: string
+-ubicacion: object
+-servicios: array (object)
+-resenias: array(object)
+-anfitrion:object
+-precio: double
+
+db.createColection
+
+Relaciones
+1 a 1: ubicacion(un alojamiento tiene un...)
+1 a 1: anfitrion
+1 a muchos: servicio
+1 a muchos: resenha
+
+Patrones:
+ - subset pattern / reference: en una coleccion diferente se crean
+ todas las resenias teniendo un campo como referencia al alojamiento.
+
+ - embeded pattern
+ anfitrion
+ ubicacion
+
+*/
