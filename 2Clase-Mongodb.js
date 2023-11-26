@@ -80,3 +80,32 @@ projection({'gender': '$customer.gender', 'age': '$customer.age', _id: 0})
 */
 use('demo-sv43')
 db.sales.find({ 'customer.age': { $gt: 30}})
+/*
+    Ejercicio 7.1
+MOstrar la cantidad de ventas cuyos clientes tenga una edad mayor a 30
+*/
+use('demo-sv43')
+db.sales.find({ 'customer.age': { $gt: 30}}).count()
+
+use('demo-sv43')
+db.sales.countDocuments({ 'customer.age': { $gt: 30}})
+/*
+distinct
+Metodo que permite mostrar los valores de un campo
+Puede dos parametros
+-campo sobre el cual se quieren los valores distintos
+-filtros
+*/
+/*
+    Ejercicio 10
+Mostrar las distintas ubicaciones de venta.
+*/
+use('demo-sv43')
+db.sales.distinct('storeLocation')
+/*
+    Ejercicio 10.1
+MOstrar las distintas ubicaciones de venta considerando el
+metodo de pago Online
+*/
+use('demo-sv43')
+db.sales.distinct('storeLocation', {purchaseMethod: 'Online'})
